@@ -1,0 +1,11 @@
+FeedMe Priority Order Controller — independent portfolio implementation
+Copyright 2026 the contributors to this independent implementation.
+
+Based on the published problem statement from feedmepos/se-take-home-assignment
+https://github.com/feedmepos/se-take-home-assignment
+Frozen upstream commit: 2652e3c9c1d8446790e2961a113c391b52d5abf0
+Upstream material is provided under the Apache License, Version 2.0.
+
+Authority-provided local acceptance fixtures are retained without alteration.
+This implementation is independently authored and is not endorsed by FeedMe
+or McDonald's. No upstream application source code is incorporated.

@@ -1,0 +1,383 @@
+{
+  "id": "R05_DEMO_ORACLE_STAGE04_R1",
+  "origin": "LOCAL independently authored Stage04 expected behavior, based on pinned R3 normative \u00a76. Never generate from production app output.",
+  "mode": "SIMULATED",
+  "anchor_utc": "12:00:00 UTC",
+  "start_time_ns": "0",
+  "finish_time_ns": "40000000000",
+  "actions": [
+    {
+      "time_ns": "0",
+      "ingress_seq": 1,
+      "command": "order normal"
+    },
+    {
+      "time_ns": "0",
+      "ingress_seq": 2,
+      "command": "order vip"
+    },
+    {
+      "time_ns": "0",
+      "ingress_seq": 3,
+      "command": "order normal"
+    },
+    {
+      "time_ns": "0",
+      "ingress_seq": 4,
+      "command": "order vip"
+    },
+    {
+      "time_ns": "0",
+      "ingress_seq": 5,
+      "command": "bot add"
+    },
+    {
+      "time_ns": "0",
+      "ingress_seq": 6,
+      "command": "bot add"
+    },
+    {
+      "time_ns": "2000000000",
+      "ingress_seq": 7,
+      "command": "bot remove"
+    }
+  ],
+  "ordered_semantic_events_excluding_t2": [
+    {
+      "at_ns": "0",
+      "kind": "order-created",
+      "order_id": 1001,
+      "state": "PENDING",
+      "customer_class": "NORMAL"
+    },
+    {
+      "at_ns": "0",
+      "kind": "order-created",
+      "order_id": 1002,
+      "state": "PENDING",
+      "customer_class": "VIP"
+    },
+    {
+      "at_ns": "0",
+      "kind": "order-created",
+      "order_id": 1003,
+      "state": "PENDING",
+      "customer_class": "NORMAL"
+    },
+    {
+      "at_ns": "0",
+      "kind": "order-created",
+      "order_id": 1004,
+      "state": "PENDING",
+      "customer_class": "VIP"
+    },
+    {
+      "at_ns": "0",
+      "kind": "worker-added",
+      "worker_id": 1,
+      "state": "IDLE"
+    },
+    {
+      "at_ns": "0",
+      "kind": "order-started",
+      "order_id": 1002,
+      "worker_id": 1,
+      "state": "PROCESSING"
+    },
+    {
+      "at_ns": "0",
+      "kind": "worker-added",
+      "worker_id": 2,
+      "state": "IDLE"
+    },
+    {
+      "at_ns": "0",
+      "kind": "order-started",
+      "order_id": 1004,
+      "worker_id": 2,
+      "state": "PROCESSING"
+    },
+    {
+      "at_ns": "10000000000",
+      "kind": "order-completed",
+      "order_id": 1002,
+      "worker_id": 1,
+      "state": "COMPLETE"
+    },
+    {
+      "at_ns": "10000000000",
+      "kind": "order-started",
+      "order_id": 1004,
+      "worker_id": 1,
+      "state": "PROCESSING"
+    },
+    {
+      "at_ns": "20000000000",
+      "kind": "order-completed",
+      "order_id": 1004,
+      "worker_id": 1,
+      "state": "COMPLETE"
+    },
+    {
+      "at_ns": "20000000000",
+      "kind": "order-started",
+      "order_id": 1001,
+      "worker_id": 1,
+      "state": "PROCESSING"
+    },
+    {
+      "at_ns": "30000000000",
+      "kind": "order-completed",
+      "order_id": 1001,
+      "worker_id": 1,
+      "state": "COMPLETE"
+    },
+    {
+      "at_ns": "30000000000",
+      "kind": "order-started",
+      "order_id": 1003,
+      "worker_id": 1,
+      "state": "PROCESSING"
+    },
+    {
+      "at_ns": "40000000000",
+      "kind": "order-completed",
+      "order_id": 1003,
+      "worker_id": 1,
+      "state": "COMPLETE"
+    },
+    {
+      "at_ns": "40000000000",
+      "kind": "worker-idle",
+      "worker_id": 1,
+      "state": "IDLE"
+    }
+  ],
+  "unordered_t2_group": [
+    {
+      "at_ns": "2000000000",
+      "kind": "order-interrupted",
+      "order_id": 1004,
+      "worker_id": 2,
+      "state": "PENDING"
+    },
+    {
+      "at_ns": "2000000000",
+      "kind": "worker-removed",
+      "worker_id": 2,
+      "state": "REMOVED"
+    }
+  ],
+  "notes": "Oracle requires the 16 ordered semantic events outside t2 and BOTH t2 events; t2 inner ordering is not fixed by R3. Session header/summary may exist; they are validated separately and may not conceal additional unauthorized semantic events. Attempt IDs are checked for consistent linking/uniqueness, not prescribed numeric values.",
+  "checkpoint_snapshots": [
+    {
+      "label": "after_creations",
+      "time_ns": "0",
+      "pending": [
+        1002,
+        1004,
+        1001,
+        1003
+      ],
+      "processing": {},
+      "completed": [],
+      "interrupted_history": [],
+      "idle_workers": [],
+      "active_workers": [],
+      "submitted": 4,
+      "after_ingress_seq": 4
+    },
+    {
+      "label": "after_two_workers",
+      "time_ns": "0",
+      "pending": [
+        1001,
+        1003
+      ],
+      "processing": {
+        "1": 1002,
+        "2": 1004
+      },
+      "completed": [],
+      "interrupted_history": [],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2
+      ],
+      "submitted": 4,
+      "after_ingress_seq": 6
+    },
+    {
+      "label": "after_B2_removal",
+      "time_ns": "2000000000",
+      "pending": [
+        1004,
+        1001,
+        1003
+      ],
+      "processing": {
+        "1": 1002
+      },
+      "completed": [],
+      "interrupted_history": [
+        1004
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1
+      ],
+      "submitted": 4,
+      "after_ingress_seq": 7
+    },
+    {
+      "label": "after_due_t10",
+      "time_ns": "10000000000",
+      "pending": [
+        1001,
+        1003
+      ],
+      "processing": {
+        "1": 1004
+      },
+      "completed": [
+        1002
+      ],
+      "interrupted_history": [
+        1004
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1
+      ],
+      "submitted": 4,
+      "after_ingress_seq": null
+    },
+    {
+      "label": "after_due_t20",
+      "time_ns": "20000000000",
+      "pending": [
+        1003
+      ],
+      "processing": {
+        "1": 1001
+      },
+      "completed": [
+        1002,
+        1004
+      ],
+      "interrupted_history": [
+        1004
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1
+      ],
+      "submitted": 4,
+      "after_ingress_seq": null
+    },
+    {
+      "label": "after_due_t30",
+      "time_ns": "30000000000",
+      "pending": [],
+      "processing": {
+        "1": 1003
+      },
+      "completed": [
+        1002,
+        1004,
+        1001
+      ],
+      "interrupted_history": [
+        1004
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1
+      ],
+      "submitted": 4,
+      "after_ingress_seq": null
+    },
+    {
+      "label": "after_due_t40",
+      "time_ns": "40000000000",
+      "pending": [],
+      "processing": {},
+      "completed": [
+        1002,
+        1004,
+        1001,
+        1003
+      ],
+      "interrupted_history": [
+        1004
+      ],
+      "idle_workers": [
+        1
+      ],
+      "active_workers": [
+        1
+      ],
+      "submitted": 4,
+      "after_ingress_seq": null
+    }
+  ],
+  "invalidated_original_deadline": {
+    "worker_id": 2,
+    "order_id": 1004,
+    "at_ns": "10000000000",
+    "must_not_complete_from_canceled_attempt": true
+  },
+  "final": {
+    "pending": [],
+    "processing": {},
+    "completed": [
+      1002,
+      1004,
+      1001,
+      1003
+    ],
+    "interrupted_history": [
+      1004
+    ],
+    "idle_workers": [
+      1
+    ],
+    "active_workers": [
+      1
+    ],
+    "submitted": 4,
+    "completed_count": 4,
+    "canceled_processing_attempts": 1
+  },
+  "expected_latest_attempts": [
+    {
+      "order_id": 1002,
+      "pickup_ns": "0",
+      "completion_ns": "10000000000"
+    },
+    {
+      "order_id": 1004,
+      "pickup_ns": "10000000000",
+      "completion_ns": "20000000000"
+    },
+    {
+      "order_id": 1001,
+      "pickup_ns": "20000000000",
+      "completion_ns": "30000000000"
+    },
+    {
+      "order_id": 1003,
+      "pickup_ns": "30000000000",
+      "completion_ns": "40000000000"
+    }
+  ],
+  "clock_display_examples": {
+    "0": "[12:00:00]",
+    "2000000000": "[12:00:02]",
+    "10000000000": "[12:00:10]",
+    "20000000000": "[12:00:20]",
+    "30000000000": "[12:00:30]",
+    "40000000000": "[12:00:40]"
+  }
+}

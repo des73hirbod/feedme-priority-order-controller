@@ -1,0 +1,18 @@
+{
+  "name": "feedme-priority-order-controller",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "description": "Independent in-memory priority order CLI based on the FeedMe challenge",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node scripts/test.mjs",
+    "test:live": "node --test tests/live.test.js",
+    "build": "node scripts/build.mjs",
+    "demo": "node scripts/run.mjs",
+    "verify:demo": "node tests/verify-demo.js scripts/result.txt",
+    "verify:faults": "node scripts/ci-faults.mjs"
+  },
+  "license": "Apache-2.0"
+}

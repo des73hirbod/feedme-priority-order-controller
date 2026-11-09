@@ -1,0 +1,402 @@
+{
+  "id": "AT-19",
+  "origin": "LOCAL detailed acceptance oracle derived from frozen R2 rules, proposed by Stage02C; ratified as R3.",
+  "interpretation": "All commands at a logical time are processed in authored order AFTER due events at that same time. Snapshots at times 0,2,3,21 are taken immediately after corresponding command; snapshots at 10,13,20,30,40,50 after deadline settlement.",
+  "commands": [
+    {
+      "time_s": 0,
+      "ordinal": 1,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 2,
+      "command": "order vip"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 3,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 4,
+      "command": "order vip"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 5,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 6,
+      "command": "order vip"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 7,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 8,
+      "command": "order vip"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 9,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 10,
+      "command": "order normal"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 11,
+      "command": "bot add"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 12,
+      "command": "bot add"
+    },
+    {
+      "time_s": 0,
+      "ordinal": 13,
+      "command": "bot add"
+    },
+    {
+      "time_s": 2,
+      "ordinal": 14,
+      "command": "bot remove"
+    },
+    {
+      "time_s": 3,
+      "ordinal": 15,
+      "command": "bot add"
+    },
+    {
+      "time_s": 21,
+      "ordinal": 16,
+      "command": "bot remove"
+    }
+  ],
+  "checkpoints": [
+    {
+      "time_s": 0,
+      "label": "after B1-B3",
+      "pending": [
+        1008,
+        1001,
+        1003,
+        1005,
+        1007,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1002,
+        "2": 1004,
+        "3": 1006
+      },
+      "completed": [],
+      "interrupted_history": [],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "time_s": 2,
+      "label": "after B3 removal",
+      "pending": [
+        1006,
+        1008,
+        1001,
+        1003,
+        1005,
+        1007,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1002,
+        "2": 1004
+      },
+      "completed": [],
+      "interrupted_history": [
+        1006
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2
+      ]
+    },
+    {
+      "time_s": 3,
+      "label": "after B4 addition",
+      "pending": [
+        1008,
+        1001,
+        1003,
+        1005,
+        1007,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1002,
+        "2": 1004,
+        "4": 1006
+      },
+      "completed": [],
+      "interrupted_history": [
+        1006
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "time_s": 10,
+      "label": "after B1/B2 due",
+      "pending": [
+        1003,
+        1005,
+        1007,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1008,
+        "2": 1001,
+        "4": 1006
+      },
+      "completed": [
+        1002,
+        1004
+      ],
+      "interrupted_history": [
+        1006
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "time_s": 13,
+      "label": "after B4 due",
+      "pending": [
+        1005,
+        1007,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1008,
+        "2": 1001,
+        "4": 1003
+      },
+      "completed": [
+        1002,
+        1004,
+        1006
+      ],
+      "interrupted_history": [
+        1006
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "time_s": 20,
+      "label": "after B1/B2 due",
+      "pending": [
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1005,
+        "2": 1007,
+        "4": 1003
+      },
+      "completed": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1001
+      ],
+      "interrupted_history": [
+        1006
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "time_s": 21,
+      "label": "after B4 removal",
+      "pending": [
+        1003,
+        1009,
+        1010
+      ],
+      "processing": {
+        "1": 1005,
+        "2": 1007
+      },
+      "completed": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1001
+      ],
+      "interrupted_history": [
+        1006,
+        1003
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2
+      ]
+    },
+    {
+      "time_s": 30,
+      "label": "after B1/B2 due",
+      "pending": [
+        1010
+      ],
+      "processing": {
+        "1": 1003,
+        "2": 1009
+      },
+      "completed": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1001,
+        1005,
+        1007
+      ],
+      "interrupted_history": [
+        1006,
+        1003
+      ],
+      "idle_workers": [],
+      "active_workers": [
+        1,
+        2
+      ]
+    },
+    {
+      "time_s": 40,
+      "label": "after B1/B2 due",
+      "pending": [],
+      "processing": {
+        "1": 1010
+      },
+      "completed": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1001,
+        1005,
+        1007,
+        1003,
+        1009
+      ],
+      "interrupted_history": [
+        1006,
+        1003
+      ],
+      "idle_workers": [
+        2
+      ],
+      "active_workers": [
+        1,
+        2
+      ]
+    },
+    {
+      "time_s": 50,
+      "label": "after B1 due",
+      "pending": [],
+      "processing": {},
+      "completed": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1001,
+        1005,
+        1007,
+        1003,
+        1009,
+        1010
+      ],
+      "interrupted_history": [
+        1006,
+        1003
+      ],
+      "idle_workers": [
+        1,
+        2
+      ],
+      "active_workers": [
+        1,
+        2
+      ]
+    }
+  ],
+  "canceled_attempt_guards": [
+    {
+      "worker_id": 3,
+      "order_id": 1006,
+      "original_deadline_s": 10,
+      "interrupted_at_s": 2
+    },
+    {
+      "worker_id": 4,
+      "order_id": 1003,
+      "original_deadline_s": 23,
+      "interrupted_at_s": 21
+    }
+  ],
+  "conservation": "For every checkpoint, each ID 1001..1010 occurs in exactly one of pending, processing values, or completed and their union equals all ten submitted orders.",
+  "final_completed": [
+    1002,
+    1004,
+    1006,
+    1008,
+    1001,
+    1005,
+    1007,
+    1003,
+    1009,
+    1010
+  ]
+}
